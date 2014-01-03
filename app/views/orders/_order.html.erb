@@ -1,0 +1,10 @@
+<% unless order.order_items.empty? %>
+<div class="cart_title">Your cart</div>
+<table>
+  <%= render(order.order_items) %>
+  <tr class="total_line">
+    <td colspan="2">Total:</td>
+    <td class="total_cell"><%= number_to_currency(order.total_price) %></td>
+  </tr>
+</table>
+<% end %>

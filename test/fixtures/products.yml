@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+valid_book:
+  title: Programming Ruby 1.9 
+  description: MyTThis book will show you how to make your web-based application look professionally designed.
+  image_url: ruby.png
+  price: 42.95
+
+invalid_book:
+  title: 
+  description: 
+  image_url: 
+  price: 
+
+one:
+  title: MyString
+  description: MyText
+  image_url: m.png
+  price: 10
+
+two:
+  title: MyString1
+  description: MyText1
+  image_url: m1.png
+  price: 11

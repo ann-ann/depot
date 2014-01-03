@@ -1,0 +1,14 @@
+<% if notice %>
+<p id="notice"><%= notice%></p>
+<% end %>
+
+<%= render @order %>
+
+<p>Bill address: <%= @order.bill_address %></p>
+<p>Ship address: <%= @order.ship_address %></p>
+
+<p>Status: <%= @order.state %></p>
+<p>completed_at: <%= @order.completed_at %></p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> 
+<%= link_to 'Back to store', store_path %>  
