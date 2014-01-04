@@ -12,6 +12,7 @@ describe Order do
   end
 
   context "assosiations" do
+  	# TODO check dependent destroy
     it { expect(order).to have_many(:order_items) }
   end
 
@@ -24,6 +25,6 @@ describe Order do
   	end
 
   end
-
+# TODO count_price test
 end
 

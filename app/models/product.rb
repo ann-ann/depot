@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   has_many :product_authors
   has_many :authors, through: :product_authors
   has_many :ratings
+  # WHY I need it? for scope .books 
   has_many :product_types
   has_many :types, through: :product_types
   has_many :order_items
@@ -40,7 +41,7 @@ class Product < ActiveRecord::Base
   end
   
   def format_title
-    self.title.capitalize
+    self.title.capitalize!
   end
 
   def ensure_no_refs_by_any_order_item

@@ -3,6 +3,7 @@ class Order < ActiveRecord::Base
   # has_many :customers, through: :customer_orders
   has_many :order_items, dependent: :destroy
   belongs_to :customer
+# TODO addresses! has_one :ship_address, class_name: "Address" + foreign_key OR single_table_inheritance
 
   validates :ship_address, :bill_address, presence: :true
 
@@ -14,6 +15,8 @@ class Order < ActiveRecord::Base
 
 
   def count_price
+    # TODO refactor through DB (ActiveREcord) - sum
+
     self.total_price = order_items.to_a.sum { |item| item.price }
   end
 
@@ -26,11 +29,12 @@ class Order < ActiveRecord::Base
   end
 
   def add_product(product_id)
+    # TODO product_id to Product object  
     current_item = order_items.find_by_product_id(product_id)
     if current_item
       current_item.quantity += 1
     else
-      current_item = order_items.build(product_id: product_id)
+      current_item = order_items.create(product_id: product_id)
     end
     current_item
   end
