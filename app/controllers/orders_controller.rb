@@ -46,7 +46,6 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.ship_address = Adderess.new(order_params)
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -94,6 +93,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:bill_address, :ship_address, :state, :created_at)
+      params.require(:order).permit(:bill_address, :ship_address, :state, :completed_at)
     end
 end

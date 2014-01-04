@@ -1,5 +1,5 @@
 require 'spec_helper'
- 
+
 describe Product do
   let(:product) { FactoryGirl.create :product}
 
@@ -41,6 +41,8 @@ describe Product do
     it { expect(product).to have_many(:ratings) }
 
     it { expect(product).to have_many(:types) }
+
+    it { expect(product).to have_many(:order_items) }
   end
 
   context ".in_stock" do
@@ -51,8 +53,6 @@ describe Product do
     it {expect(Product.in_stock).not_to match_array(products_out_of_stock)}
   end
 
-# expect{Counter.increment}.to change{Counter.count}.from(0).to(1)
-  
 
 end
 

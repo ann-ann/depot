@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102095957) do
+ActiveRecord::Schema.define(version: 20140103164957) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -50,6 +50,22 @@ ActiveRecord::Schema.define(version: 20140102095957) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "credit_cards", force: true do |t|
+    t.decimal  "number"
+    t.integer  "cvv"
+    t.integer  "exp_m"
+    t.integer  "exp_y"
+    t.string   "fname"
+    t.string   "lname"
+    t.integer  "customer_id"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id"
+  add_index "credit_cards", ["order_id"], name: "index_credit_cards_on_order_id"
 
   create_table "customer_orders", force: true do |t|
     t.integer  "customer_id"

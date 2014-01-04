@@ -1,15 +1,17 @@
 class Order < ActiveRecord::Base
-  has_many :customer_orders
-  has_many :customers, through: :customer_orders
+  # has_many :customer_orders
+  # has_many :customers, through: :customer_orders
   has_many :order_items, dependent: :destroy
+  belongs_to :customer
 
   validates :ship_address, :bill_address, presence: :true
 
 # TODO add method to set STATE and COMPLETED_AT  after created
   after_find :count_price
 
-  after_validation :update_status
-  after_save :set_completed_at
+  after_validation :update_status, :set_completed_at
+# TODO change type of completed_at in DB to 'datetime'
+
 
   def count_price
     self.total_price = order_items.to_a.sum { |item| item.price }
@@ -36,5 +38,7 @@ class Order < ActiveRecord::Base
   def add_address(address_type)
   # TODO
   end
+
+
 
 end

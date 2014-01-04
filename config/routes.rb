@@ -1,5 +1,9 @@
 Depot::Application.routes.draw do
 
+  resources :credit_cards
+
+  resources :customers
+
   resources :order_items
 
   resources :orders
