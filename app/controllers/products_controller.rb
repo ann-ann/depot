@@ -1,7 +1,11 @@
 
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_order
 
+  def find_order
+    @order = current_order
+  end
   # GET /products
   # GET /products.json
   def index
@@ -11,6 +15,19 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    # to show only product in stock
+    begin
+      @product = Product.in_stock.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to store_path, notice: 'Invalid product'
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @product }
+      end
+    end
+    
   end
 
   # GET /products/new

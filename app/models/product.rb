@@ -32,12 +32,8 @@ class Product < ActiveRecord::Base
 
   scope :books, -> { joins(:types).where("types.name = 'book'" ) }
   
-  def order
-    if in_stock
-    # - add to categorizations
-  else
-    # -print message that book is not available
-    end
+  def in_stock?
+    true if in_stock > 0
   end
 
   def ensure_no_refs_by_any_order_item
@@ -47,6 +43,17 @@ class Product < ActiveRecord::Base
       errors.add(:base, 'cannot be delated')
       false
     end
+  end
+
+  def get_rating
+
+    ratings = Rating.where(product_id: self.id)
+    rating = ratings.sum("rating") / ratings.count unless ratings.empty?
+    rating || "havent been rated yet"
+    
+    # Client.where(first_name: 'Ryan').count
+    # self.total_price = OrderItem.where(order_id: self.id).sum("price")
+  
   end
 
 end

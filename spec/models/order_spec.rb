@@ -6,9 +6,9 @@ describe Order do
   let(:product) { FactoryGirl.create :product}
 
   context "validations" do
-    it { expect(order).to validate_presence_of(:ship_address) }
+    # it { expect(order).to validate_presence_of(:ship_address) }
 
-    it { expect(order).to validate_presence_of(:bill_address) }
+    # it { expect(order).to validate_presence_of(:bill_address) }
   end
 
   context "assosiations" do
@@ -19,8 +19,7 @@ describe Order do
   context "adds products to the order" do
 
   	it "adds items to order" do
-  		# WHY???
-  	  expect{order.add_product(product.id)}.to change{order.order_items.count}.to(1)
+  	  expect{ order.add_product(product.id) }.to change{ order.order_items.count }.to(1)
 
   	end
 
