@@ -1,0 +1,40 @@
+<%= form_for(@credit_card) do |f| %>
+
+<%= render "shared/error_messages", :target => f.object %>
+
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :cvv %><br>
+    <%= f.number_field :cvv %>
+  </div>
+  <div class="field">
+    <%= f.label :exp_m %><br>
+    <%= f.number_field :exp_m %>
+  </div>
+  <div class="field">
+    <%= f.label :exp_y %><br>
+    <%= f.number_field :exp_y %>
+  </div>
+  <div class="field">
+    <%= f.label :fname %><br>
+    <%= f.text_field :fname %>
+  </div>
+  <div class="field">
+    <%= f.label :lname %><br>
+    <%= f.text_field :lname %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.text_field :customer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :order_id %><br>
+    <%= f.text_field :order_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

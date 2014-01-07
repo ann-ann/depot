@@ -2,13 +2,16 @@ require 'spec_helper'
 
 describe Product do
   let(:product) { FactoryGirl.create :product}
+  let(:order_item) { FactoryGirl.create :order_item, product_id: product.id}
+
 
   context "validations" do
     it { expect(product).to validate_presence_of(:title) }
 
     it { expect(product).to validate_uniqueness_of(:title) }
 
-    it do expect(product).to ensure_length_of(:title).is_at_least(10).
+    it do 
+      expect(product).to ensure_length_of(:title).is_at_least(10).
       with_message('Title have to be not less that 10 chars long') 
     end
 
@@ -16,25 +19,30 @@ describe Product do
 
     it { expect(product).to validate_presence_of(:image_url) }
 
-    it do expect(product).to allow_value('ann.jpg, valid_img.png, valig.gif, smthg.JPG, http://a.b.c/lalal.png').
+    it do 
+      expect(product).to allow_value('ann.jpg, valid_img.png, valig.gif, smthg.JPG, http://a.b.c/lalal.png').
       for(:image_url) 
     end
 
-    it do expect(product).not_to allow_value('ann.doc, invalid_img, valig.txt, smthg.p_n_g, http://a.b.c/lalal_png').
+    it do 
+      expect(product).not_to allow_value('ann.doc, invalid_img, valig.txt, smthg.p_n_g, http://a.b.c/lalal_png').
       for(:image_url) 
     end
 
-    it do expect(product).to validate_numericality_of(:price).
+    it do 
+      expect(product).to validate_numericality_of(:price).
       with_message('Price have to be not less that 0.01') 
     end
 
-    it do expect(product).to validate_numericality_of(:price)
+    it do 
+      expect(product).to validate_numericality_of(:price)
       .is_greater_than_or_equal_to(0.01).with_message('Price have to be not less that 0.01') 
     end
+
+    it { expect(product).to validate_numericality_of(:in_stock).is_greater_than_or_equal_to(0) }
   end
 
   context "assosiations" do
-    it { expect(product).to have_many(:categories) }
 
     it { expect(product).to have_many(:authors) }
 
@@ -53,7 +61,11 @@ describe Product do
     it {expect(Product.in_stock).not_to match_array(products_out_of_stock)}
   end
 
-
+  context ".ensure_no_refs_by_any_order_item" do
+    it "cannot be deleted if there any order items related to product" do
+      # TODO associations testing
+    end
+  end
 end
 
 

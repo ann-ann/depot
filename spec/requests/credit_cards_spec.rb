@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Categorization do
+describe "CreditCards" do
 
 end

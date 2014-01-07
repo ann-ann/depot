@@ -1,7 +1,7 @@
 require 'faker'
 FactoryGirl.define do
     sequence :title do |n|
-    "#{Faker::Lorem.sentence}"
+    "Title for product#{n}"
   end
 
   factory :product do
@@ -18,14 +18,5 @@ FactoryGirl.define do
     factory :product_out_of_stock do
   	  in_stock false
     end
-
-    factory :low_case_title_product do
-      title "#{a{ FactoryGirl.generate(:title) }}"
-    end
-
   end
-
-
-
-
 end

@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   belongs_to :customer
 # TODO addresses! has_one :ship_address, class_name: "Address" + foreign_key OR single_table_inheritance
 
-  validates :ship_address, :bill_address, presence: :true
+  # validates :ship_address, :bill_address, presence: :true . will be validated later
 
 # TODO add method to set STATE and COMPLETED_AT  after created
   after_find :count_price

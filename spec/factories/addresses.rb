@@ -6,5 +6,7 @@ FactoryGirl.define do
     zipcode "MyString"
     city "MyString"
     phone "MyString"
+    order nil
+    country nil
   end
 end

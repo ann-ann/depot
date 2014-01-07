@@ -12,7 +12,7 @@ Product.create(title: 'Web Design for Developers',
       </p>},
   image_url: 'wd4d.jpg',    
   price: 42.95,
-  in_stock: true)
+  in_stock: 1)
 # . . .
 Product.create(title: 'Programming Ruby 1.9',
   description:
@@ -23,7 +23,7 @@ Product.create(title: 'Programming Ruby 1.9',
       </p>},
   image_url: 'ruby.jpg',
   price: 49.50,
-  in_stock: true)
+  in_stock: 1)
 # . . .
 
 Product.create(title: 'Rails Test Prescriptions',
@@ -38,12 +38,8 @@ Product.create(title: 'Rails Test Prescriptions',
       </p>},
   image_url: 'rtp.jpg',
   price: 43.75,
-  in_stock: false)
+  in_stock: 0)
 
-Category.create(title: "Programming")
-Categorization.create(product_id: 1, category_id: 1)
-Categorization.create(product_id: 2, category_id: 1)
-Categorization.create(product_id: 3, category_id: 1)
 
 Author.create(first_name: "Brian", last_name: "Hogan")
 Author.create(first_name: "Dave", last_name: "Thomas")

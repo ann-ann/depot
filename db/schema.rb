@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105155406) do
+ActiveRecord::Schema.define(version: 20140107120557) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20140105155406) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
+    t.integer  "order_id"
   end
 
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
+  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id"
 
   create_table "authors", force: true do |t|
     t.string   "first_name"
@@ -31,22 +33,6 @@ ActiveRecord::Schema.define(version: 20140105155406) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "categories", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "categorizations", force: true do |t|
-    t.integer  "product_id"
-    t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id"
-  add_index "categorizations", ["product_id"], name: "index_categorizations_on_product_id"
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -134,7 +120,7 @@ ActiveRecord::Schema.define(version: 20140105155406) do
     t.decimal  "price",       precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "in_stock"
+    t.integer  "in_stock"
   end
 
   create_table "ratings", force: true do |t|

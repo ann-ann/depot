@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @credit_card.number %>
+</p>
+
+<p>
+  <strong>Cvv:</strong>
+  <%= @credit_card.cvv %>
+</p>
+
+<p>
+  <strong>Exp m:</strong>
+  <%= @credit_card.exp_m %>
+</p>
+
+<p>
+  <strong>Exp y:</strong>
+  <%= @credit_card.exp_y %>
+</p>
+
+<p>
+  <strong>Fname:</strong>
+  <%= @credit_card.fname %>
+</p>
+
+<p>
+  <strong>Lname:</strong>
+  <%= @credit_card.lname %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @credit_card.customer %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @credit_card.order %>
+</p>
+
+<%= link_to 'Edit', edit_credit_card_path(@credit_card) %> |
+<%= link_to 'Back', credit_cards_path %>

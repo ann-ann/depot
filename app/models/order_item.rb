@@ -7,5 +7,4 @@ class OrderItem < ActiveRecord::Base
   def count_price
     self.price = (product.price * quantity).to_f
   end
-
 end
