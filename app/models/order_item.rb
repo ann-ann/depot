@@ -1,4 +1,6 @@
 class OrderItem < ActiveRecord::Base
+
+  validates_numericality_of :quantity
   belongs_to :product
   belongs_to :order
 
