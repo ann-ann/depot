@@ -27,6 +27,11 @@ describe Order do
       order.add_product(product).save
       expect{ order.add_product(product).save }.to change{ order.order_items.first.quantity }.by(1)
     end
+
+    it "decreases quantity of product" do
+      order_with_items.add_product(product).save
+      expect{ order_with_items.add_product(product).save }.to change{ product.in_stock }.by(-1)
+    end
   end
   context ".update_status" do
     it { expect(order.state).to be_eql('in_progress') }

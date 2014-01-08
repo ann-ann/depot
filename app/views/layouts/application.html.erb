@@ -14,8 +14,10 @@
   	<div id="side">
       <div id = "cart">
         <%= render @order %>
+        <% unless @order.order_items.empty? %>
         <%= button_to 'Checkout', @order, method: :get %>
         <%= button_to 'Empty cart', @order, method: :delete, data: { confirm: 'Are you sure' } %>
+        <% end %>
       </div>
   	  <ul>
   	  	<li><a href=<%= store_path %>>Home</a></li>

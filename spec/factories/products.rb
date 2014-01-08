@@ -9,14 +9,10 @@ FactoryGirl.define do
     description Faker::Lorem.sentence
     image_url "ruby.png"
     price { rand(10..20) }
-    in_stock false
-
-    factory :product_in_stock do
-  	  in_stock true
-    end
+    in_stock { rand(1..20) }
 
     factory :product_out_of_stock do
-  	  in_stock false
+  	  in_stock 0
     end
 
     factory :product_with_ratings do

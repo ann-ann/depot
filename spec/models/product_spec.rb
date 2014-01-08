@@ -53,7 +53,7 @@ describe Product do
   end
 
   context ".in_stock scope" do
-    let(:products_in_stock) { FactoryGirl.create_list(:product_in_stock, 4) }
+    let(:products_in_stock) { FactoryGirl.create_list(:product, 4) }
     let(:products_out_of_stock) { FactoryGirl.create_list(:product_out_of_stock, 3) }
 
     it {expect(Product.in_stock).to match_array(products_in_stock)}
@@ -61,7 +61,7 @@ describe Product do
   end
   
   context ".in_stock? method" do
-    let(:product_in_stock) { FactoryGirl.create :product_in_stock }
+    let(:product_in_stock) { FactoryGirl.create :product }
     let(:product_out_of_stock) { FactoryGirl.create :product_out_of_stock }
 
     it {expect(product_in_stock).to be_in_stock}

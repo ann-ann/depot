@@ -1,6 +1,6 @@
 class OrderItem < ActiveRecord::Base
 
-  validates_numericality_of :quantity
+  validates_numericality_of :quantity, :price
   belongs_to :product
   belongs_to :order
 
@@ -12,8 +12,12 @@ class OrderItem < ActiveRecord::Base
   end
 
   def back_product_to_stock
-    p = Product.find(self.product_id)
-    p.in_stock += 1
-    p.save
+    product.in_stock += self.quantity
+    product.save
+  end
+
+  def decrease_quantity
+    product.in_stock += 1
+    product.save
   end
 end

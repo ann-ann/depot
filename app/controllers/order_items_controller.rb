@@ -61,7 +61,7 @@ class OrderItemsController < ApplicationController
       @order_item.quantity -= 1
       @order_item.save
       # TODO check if its fine??  
-      @order_item.back_product_to_stock
+      @order_item.decrease_quantity
     else
       @order_item.destroy
     end 
