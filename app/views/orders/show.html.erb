@@ -10,6 +10,6 @@
 <p>Status: <%= @order.state %></p>
 <p>completed_at: <%= @order.completed_at %></p>
 
-<%= button_to "Proceed", new_customer_path, method: :get %>
+<%= button_to "Proceed", new_address_path, method: :get %>
 <%= link_to 'Edit', edit_order_path(@order) %> 
 <%= link_to 'Back to store', store_path %>  

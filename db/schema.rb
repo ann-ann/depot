@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108112405) do
+ActiveRecord::Schema.define(version: 20140108142507) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20140108112405) do
   end
 
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
-  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id"
 
   create_table "authors", force: true do |t|
     t.string   "first_name"
@@ -83,11 +82,9 @@ ActiveRecord::Schema.define(version: 20140108112405) do
   end
 
   create_table "orders", force: true do |t|
-    t.float    "total_price",  default: 0.0
+    t.float    "total_price",              default: 0.0
     t.string   "state"
-    t.string   "completed_at"
-    t.string   "bill_address"
-    t.string   "ship_address"
+    t.datetime "completed_at", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"

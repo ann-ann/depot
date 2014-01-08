@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :order_item do
-    product_id 1
-    order_id 1
-    price 1
-    quantity 1
+    price { rand(10..20) }
+    quantity { rand(1..3) }
+    association :order
+    association :product
   end
 end

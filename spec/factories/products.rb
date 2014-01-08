@@ -8,7 +8,7 @@ FactoryGirl.define do
     title { FactoryGirl.generate(:title) }
     description Faker::Lorem.sentence
     image_url "ruby.png"
-    price 10
+    price { rand(10..20) }
     in_stock false
 
     factory :product_in_stock do
@@ -32,7 +32,6 @@ FactoryGirl.define do
         create_list :order_item, evaluator.order_items_count, product: product
       end
     end
-
   end
 end
 

@@ -1,23 +1,21 @@
 class Order < ActiveRecord::Base
-  # has_many :customer_orders
-  # has_many :customers, through: :customer_orders
+
+  # validates_inclusion_of :state, in: %w(in_progress complited shipped)
+
   has_many :order_items, dependent: :destroy
   belongs_to :customer
-# TODO addresses! has_one :ship_address, class_name: "Address" + foreign_key OR single_table_inheritance
-
-# TODO add method to set STATE and COMPLETED_AT  after created
+  has_one :ship_address, class_name: "Address"
+  has_one :bill_address, class_name: "Address"
+# TODO update after order_item added
   after_find :count_price
-
-  after_validation :update_status, :set_completed_at
-# TODO change type of completed_at in DB to 'datetime'
-
+  after_create :update_status, :set_completed_at
 
   def count_price
     self.total_price = OrderItem.where(order_id: self.id).sum("price")
   end
 
   def update_status
-    self.state = 'new'
+    self.state = 'in_progress'
   end
 
   def set_completed_at
@@ -31,16 +29,11 @@ class Order < ActiveRecord::Base
     else
       current_item = order_items.create(product_id: product.id)
     end
+    # TODO move to callbacks of OrderItem
     product.in_stock-=1
     product.save
 
     current_item
   end
-
-  def add_address(address_type)
-  # TODO
-  end
-
-
-
 end
+

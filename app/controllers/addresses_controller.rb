@@ -1,7 +1,9 @@
 class AddressesController < ApplicationController
+  before_action :set_order
 
-
-
+  def set_order
+    @order = current_order
+  end
   def show
   end
 
@@ -42,7 +44,7 @@ class AddressesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params

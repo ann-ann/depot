@@ -57,12 +57,12 @@ class OrderItemsController < ApplicationController
   # DELETE /order_items/1
   # DELETE /order_items/1.json
   def destroy
-    product = @order_item.product
-    product.in_stock += 1
-    product.save
+  
     if @order_item.quantity > 1
       @order_item.quantity -= 1
       @order_item.save
+      # TODO check if its fine??  
+      @order_item.back_product_to_stock
     else
       @order_item.destroy
     end 
