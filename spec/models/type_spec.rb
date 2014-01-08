@@ -7,4 +7,6 @@ describe Type do
   it { expect(type).to validate_uniqueness_of(:name) }
   it { expect(type).to have_many(:product_types) }
   it { expect(type).to have_many(:products) }
+
+  # TODO text has_many through 
 end
