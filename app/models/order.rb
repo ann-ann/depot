@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 
-  # validates_inclusion_of :state, in: %w(in_progress complited shipped)
+  # validates_inclusion_of :state, in: %w(in_progress complited shipped), allow_blank: true
 
   has_many :order_items, dependent: :destroy
   belongs_to :customer
@@ -8,13 +8,13 @@ class Order < ActiveRecord::Base
   has_one :bill_address, class_name: "Address"
 # TODO update after order_item added
   after_find :count_price
-  after_create :update_status, :set_completed_at
+  before_create :set_status, :set_completed_at
 
   def count_price
     self.total_price = OrderItem.where(order_id: self.id).sum("price")
   end
 
-  def update_status
+  def set_status
     self.state = 'in_progress'
   end
 
