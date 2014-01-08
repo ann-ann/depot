@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -10,6 +10,10 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    if @order.order_items.empty?
+      redirect_to store_url, notice: "Your cart is empty"
+      return
+    end 
     begin
       @order = Order.find(params[:id])
     rescue ActiveRecord::RecordNotFound
@@ -24,18 +28,18 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/new
-  def new
-    @order = current_order
-    if @order.order_items.empty?
-      redirect_to store_url, notice: "Your cart is empty"
-      return
-    end 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @order }
-    end
+  # def new
+  #   @order = current_order
+  #   if @order.order_items.empty?
+  #     redirect_to store_url, notice: "Your cart is empty"
+  #     return
+  #   end 
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @order }
+  #   end
 
-  end
+  # end
 
   # GET /orders/1/edit
   def edit
@@ -60,7 +64,6 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @order = current_order
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order updated.' }
@@ -75,7 +78,6 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @order = current_order
     @order.destroy
     session[:order_id] = nil
 
@@ -87,9 +89,9 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_order
-    #   @order = Order.find(params[:id])
-    # end
+    def set_order
+      @order = current_order
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params

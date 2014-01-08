@@ -12,21 +12,24 @@ describe Order do
   context "assosiations" do
     it { expect(order).to have_many(:order_items).dependent(:destroy) }
     it { expect(order).to belong_to(:customer) }
-    it { expect(order).to have_one(:ship_address).class_name('Address') }
+    it { expect(order).to have_one(:shipp_address).class_name('Address') }
     it { expect(order).to have_one(:bill_address).class_name('Address') }
   end
 
-  it "count total price after order updated" do
+  context ".count_price" do
 # TODO test this callback 
   end
-  context "adds products to the order" do
-
-  	it "adds items to order" do
+  context ".add_product" do
+  	it "add new item to order if there is no items with same product" do
   	  expect{ order.add_product(product) }.to change{ order.order_items.count }.to(1)
-
   	end
-
+    it "increase quantity of product in item if product in order already" do
+      order.add_product(product).save
+      expect{ order.add_product(product).save }.to change{ order.order_items.first.quantity }.by(1)
+    end
   end
-# TODO count_price test
+  context ".update_status" do
+    it { expect(order.state).to be_eql('in_progress') }
+  end
 end
 

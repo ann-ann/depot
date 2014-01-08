@@ -40,7 +40,7 @@ Product.create(title: 'Rails Test Prescriptions',
   price: 43.75,
   in_stock: 0)
 
-
+Address.create(address: "some str 11", zipcode: "12345", city: "Kiev", phone: "0631234567", country_id: "1")
 Author.create(first_name: "Brian", last_name: "Hogan")
 Author.create(first_name: "Dave", last_name: "Thomas")
 Author.create(first_name: "Chad", last_name: "Fowler")
@@ -51,15 +51,18 @@ ProductAuthor.create(product_id: 2, author_id: 2)
 ProductAuthor.create(product_id: 2, author_id: 3)
 ProductAuthor.create(product_id: 3, author_id: 4)
 
+Country.create(name: "Ukraine")
+
 Customer.create(first_name: "ann", last_name: "vs", email: "lalal@gmail.com", password: "123qwe")
 Rating.create(customer_id: 1, product_id: 1, rating: 10, text: "Such an awesome book!")
+
 Type.create(name: "book")
 Type.create(name: "other")
 ProductType.create(product_id: 1, type_id: 1)
 ProductType.create(product_id: 2, type_id: 1)
 ProductType.create(product_id: 3, type_id: 2)
 
-Order.create(state: "new", completed_at: "today", bill_address: "dp ", ship_address: "ciklum")
+Order.create()
 
 OrderItem.create(product_id: 1, order_id: 1, price: nil, quantity: 2)
 OrderItem.create(product_id: 2, order_id: 1, price: nil, quantity: 1)

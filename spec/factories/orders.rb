@@ -6,7 +6,7 @@ FactoryGirl.define do
     state "in_progress"
     completed_at Date.today
     bill_address nil
-    ship_address nil
+    shipp_address nil
     factory :order_with_items do
       ignore { order_items_count 3 }
       after :create do |order, evaluator|

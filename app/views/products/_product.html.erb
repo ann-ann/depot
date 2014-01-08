@@ -7,7 +7,7 @@
   <div class="price_line">
   <span class="price"><%= number_to_currency(product.price) %></span>
   <% if product.in_stock? %>
-    <%= button_to "Add to cart", order_items_path(product_id: product), remote: true %>
+    <%= button_to "Add to cart", order_items_path(product_id: product)%>
     <%= product.in_stock %> in stock 
   <% else %>
     <div id="out_of_stock">Out of stock</div>

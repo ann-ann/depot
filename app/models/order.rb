@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, dependent: :destroy
   belongs_to :customer
-  has_one :ship_address, class_name: "Address"
+  has_one :shipp_address, class_name: "Address"
   has_one :bill_address, class_name: "Address"
 # TODO update after order_item added
   after_find :count_price
