@@ -12,11 +12,6 @@
     border-bottom: 3px dotted #77d;
   }
   
-  #type {
-
-    display: inline;
-    background: rgb(227, 253, 91);
-  }
   /* An entry in the store catalog */
   .entry {
     overflow: auto;
@@ -49,10 +44,7 @@
         display: inline;
 
       }
-      #out_of_stock {
-        color: red;
-        font-weight: bold;
-      }
+      
     }
 
     .price {

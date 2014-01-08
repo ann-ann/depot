@@ -43,11 +43,11 @@ describe Product do
   end
 
   context "assosiations" do
-    it { expect(product).to have_many(:authors) }
+    it { expect(product).to have_many(:authors).through(:product_authors) }
 
     it { expect(product).to have_many(:ratings) }
 
-    it { expect(product).to have_many(:types) }
+    it { expect(product).to have_many(:types).through(:product_types) }
 
     it { expect(product).to have_many(:order_items) }
   end

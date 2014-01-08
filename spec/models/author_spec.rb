@@ -6,7 +6,6 @@ describe Author do
 
   it { expect(author).to validate_presence_of(:first_name) }
   it { expect(author).to validate_presence_of(:last_name) }
-  it { expect(author).to have_many(:product_authors) }
-  it { expect(author).to have_many(:products) }
+  it { expect(author).to have_many(:products).through(:product_authors) }
 # Need to test simple to_s method?
 end

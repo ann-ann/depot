@@ -8,5 +8,5 @@ describe Type do
   it { expect(type).to have_many(:product_types) }
   it { expect(type).to have_many(:products) }
 
-  # TODO text has_many through 
+  # TODO text has_many through OR test it in product_type_spec.rb ?
 end
