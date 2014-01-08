@@ -13,10 +13,6 @@ class Product < ActiveRecord::Base
   before_destroy :ensure_no_refs_by_any_order_item
 
   has_many :order_items
-
-# check in_stock before order
-
-# check that user havent rate same book 
   
   # Should contain title, descirption, price and how many books in stock
   validates :title, :description, :image_url, presence: true
@@ -46,17 +42,9 @@ class Product < ActiveRecord::Base
   end
 
   def get_rating
-
     ratings = Rating.where(product_id: self.id)
     rating = ratings.sum("rating") / ratings.count unless ratings.empty?
     rating || "havent been rated yet"
-    
-    # Client.where(first_name: 'Ryan').count
-    # self.total_price = OrderItem.where(order_id: self.id).sum("price")
-  
   end
 
 end
-
-# A customer should be able to order a book if it's exist on a stock
-# A customer should be able to rate a book only once

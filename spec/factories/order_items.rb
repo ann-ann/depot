@@ -6,6 +6,5 @@ FactoryGirl.define do
     order_id 1
     price 1
     quantity 1
-    product
   end
 end

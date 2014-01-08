@@ -19,7 +19,7 @@ describe Order do
   context "adds products to the order" do
 
   	it "adds items to order" do
-  	  expect{ order.add_product(product.id) }.to change{ order.order_items.count }.to(1)
+  	  expect{ order.add_product(product) }.to change{ order.order_items.count }.to(1)
 
   	end
 

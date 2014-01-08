@@ -1,6 +1,6 @@
 
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  # before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :find_order
 
   def find_order
@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
   def show
     # to show only product in stock
     begin
-      @product = Product.in_stock.find(params[:id])
+      @product = Product.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to store_path, notice: 'Invalid product'

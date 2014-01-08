@@ -24,14 +24,16 @@ class Order < ActiveRecord::Base
     self.completed_at = Date.today
   end
 
-  def add_product(product_id)
-    # TODO product_id to Product object . 
-    current_item = order_items.find_by_product_id(product_id)
+  def add_product(product) 
+    current_item = order_items.find_by_product_id(product.id)
     if current_item
       current_item.quantity += 1
     else
-      current_item = order_items.create(product_id: product_id)
+      current_item = order_items.create(product_id: product.id)
     end
+    product.in_stock-=1
+    product.save
+
     current_item
   end
 

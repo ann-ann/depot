@@ -11,7 +11,12 @@
     color: #226;
     border-bottom: 3px dotted #77d;
   }
+  
+  #type {
 
+    display: inline;
+    background: rgb(227, 253, 91);
+  }
   /* An entry in the store catalog */
   .entry {
     overflow: auto;
@@ -35,7 +40,7 @@
       color: #227;
     }
 
-    p, div.price_line {
+    p, div.price_line, h4 {
       margin-left: 100px;
       margin-top: 0.5em; 
       margin-bottom: 0.8em; 

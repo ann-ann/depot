@@ -26,7 +26,7 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
     product = Product.find(params[:product_id])
-    @order_item = @order.add_product(product.id)
+    @order_item = @order.add_product(product)
     respond_to do |format|
       if @order_item.save
         format.html { redirect_to store_url }
@@ -57,6 +57,9 @@ class OrderItemsController < ApplicationController
   # DELETE /order_items/1
   # DELETE /order_items/1.json
   def destroy
+    product = @order_item.product
+    product.in_stock += 1
+    product.save
     if @order_item.quantity > 1
       @order_item.quantity -= 1
       @order_item.save

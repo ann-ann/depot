@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :rating do
     product nil
     customer nil
-    rating 1
-    text "MyText"
+    rating { rand(1..10) }
+    text { Faker::Lorem.sentence }
   end
 end

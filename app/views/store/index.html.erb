@@ -5,19 +5,6 @@
 <h1>Your pragmatic catalog</h1>
 
 <% @products.each do |product| %>
-	<div class="entry">
-	  <%= image_tag(product.image_url) %>
-	  <h3><%= product.title %></h3>
-	  <%= sanitize(product.description) %>
-	  <p>Rating: <%= product.get_rating %></p>
-	  <div class="price_line">
-	    <span class="price"><%= number_to_currency(product.price) %></span>
-	    <% if product.in_stock? %>
-	    <%= button_to "Add to cart", order_items_path(product_id: product), remote: true %>
-	    <% else %>
-        <div id="out_of_stock">Out of stock</div>
-	    <% end %>
-	  </div>
-	</div>
+  <%= render product %>
 <% end %>
 
