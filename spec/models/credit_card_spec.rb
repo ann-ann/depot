@@ -84,8 +84,6 @@ describe CreditCard do
 
   end
 
-
-
   context "assosiations" do
     it { expect(credit_card).to belong_to(:order) }
   end

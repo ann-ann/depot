@@ -7,7 +7,7 @@ FactoryGirl.define do
   factory :product do
     title { FactoryGirl.generate(:title) }
     description Faker::Lorem.sentence
-    image_url "ruby.png"
+    image_url "#{Faker::Lorem.words(1)}.jpg"
     price { rand(10..20) }
     in_stock { rand(1..20) }
 
