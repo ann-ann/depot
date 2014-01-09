@@ -7,6 +7,8 @@ FactoryGirl.define do
     fname "MyString"
     lname "MyString"
     order nil
-
+    factory :current_year_expiration_card do
+      exp_y Date.today.strftime("%Y").to_i
+    end
   end
 end
