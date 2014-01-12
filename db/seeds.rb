@@ -12,7 +12,7 @@ Product.create(title: 'Web Design for Developers',
       </p>},
   image_url: 'wd4d.jpg',    
   price: 42.95,
-  in_stock: 1)
+  in_stock: 10)
 # . . .
 Product.create(title: 'Programming Ruby 1.9',
   description:
@@ -23,7 +23,7 @@ Product.create(title: 'Programming Ruby 1.9',
       </p>},
   image_url: 'ruby.jpg',
   price: 49.50,
-  in_stock: 1)
+  in_stock: 5)
 # . . .
 
 Product.create(title: 'Rails Test Prescriptions',
@@ -38,7 +38,7 @@ Product.create(title: 'Rails Test Prescriptions',
       </p>},
   image_url: 'rtp.jpg',
   price: 43.75,
-  in_stock: 0)
+  in_stock: 3)
 
 Address.create(address: "some str 11", zipcode: "12345", city: "Kiev", phone: "0631234567", country_id: "1")
 Author.create(first_name: "Brian", last_name: "Hogan")
@@ -54,6 +54,7 @@ ProductAuthor.create(product_id: 3, author_id: 4)
 Country.create(name: "Ukraine")
 
 Customer.create(first_name: "ann", last_name: "vs", email: "lalal@gmail.com", password: "123qwe")
+
 Rating.create(customer_id: 1, product_id: 1, rating: 10, text: "Such an awesome book!")
 
 Type.create(name: "book")
@@ -62,10 +63,10 @@ ProductType.create(product_id: 1, type_id: 1)
 ProductType.create(product_id: 2, type_id: 1)
 ProductType.create(product_id: 3, type_id: 2)
 
-Order.create()
+Order.create(customer_id: 1)
 
-OrderItem.create(product_id: 1, order_id: 1, price: nil, quantity: 2)
-OrderItem.create(product_id: 2, order_id: 1, price: nil, quantity: 1)
+OrderItem.create(product_id: 1, order_id: 1)
+OrderItem.create(product_id: 2, order_id: 1)
 
 
 

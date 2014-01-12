@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Rating do
     
-    let(:rating) { FactoryGirl.create(:rating) }
+  let(:rating) { FactoryGirl.create(:rating) }
 
 	context "validations" do
       it { expect(rating).to validate_presence_of(:rating) }

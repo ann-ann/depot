@@ -56,7 +56,7 @@ class OrderItemsController < ApplicationController
   # DELETE /order_items/1
   # DELETE /order_items/1.json
   def destroy
-  
+  # TODO move it somewhere
     if @order_item.quantity > 1
       @order_item.quantity -= 1
       @order_item.save

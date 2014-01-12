@@ -6,7 +6,6 @@ describe Type do
   it { expect(type).to validate_presence_of(:name) }
   it { expect(type).to validate_uniqueness_of(:name) }
   it { expect(type).to have_many(:product_types) }
-  it { expect(type).to have_many(:products) }
+  it { expect(type).to have_many(:products).through(:product_types) }
 
-  # TODO text has_many through OR test it in product_type_spec.rb ?
 end

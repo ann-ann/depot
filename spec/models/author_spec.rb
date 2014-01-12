@@ -15,9 +15,7 @@ describe Author do
       expect(author).not_to allow_value('ann.doc, invalid_img, valig.txt, smthg.p_n_g, http://a.b.c/lalal_png').
       for(:photo) 
     end
-    it do 
-      expect(author).to allow_value('').for(:photo) 
-    end
+    it { expect(author).to allow_value('').for(:photo) } 
   end
   context "associations" do
     it { expect(author).to have_many(:products).through(:product_authors) }

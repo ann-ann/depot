@@ -17,8 +17,6 @@ describe Product do
 
     it { expect(product).to validate_presence_of(:description) }
 
-    it { expect(product).to validate_presence_of(:image_url) }
-
     it do 
       expect(product).to allow_value('ann.jpg, valid_img.png, valig.gif, smthg.JPG, http://a.b.c/lalal.png').
       for(:image_url) 
@@ -28,6 +26,8 @@ describe Product do
       expect(product).not_to allow_value('ann.doc, invalid_img, valig.txt, smthg.p_n_g, http://a.b.c/lalal_png').
       for(:image_url) 
     end
+
+    it { expect(product).to allow_value('').for(:image_url) } 
 
     it do 
       expect(product).to validate_numericality_of(:price).
@@ -42,10 +42,12 @@ describe Product do
     it { expect(product).to validate_numericality_of(:in_stock).is_greater_than_or_equal_to(0) }
   end
 
-  context "assosiations" do
+  context "associations" do
     it { expect(product).to have_many(:authors).through(:product_authors) }
 
     it { expect(product).to have_many(:ratings) }
+
+    it { expect(product).to have_many(:product_types) }
 
     it { expect(product).to have_many(:types).through(:product_types) }
 
