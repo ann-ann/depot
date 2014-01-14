@@ -10,7 +10,7 @@ Product.create(title: 'Web Design for Developers',
         and work through a web site redesign, taking a new design from concept
         all the way to implementation.
       </p>},
-  image_url: 'wd4d.jpg',    
+  image_url: 'uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}/wd4d.jpg',    
   price: 42.95,
   in_stock: 10)
 # . . .
@@ -21,7 +21,7 @@ Product.create(title: 'Programming Ruby 1.9',
         out there. If you need to get working programs delivered fast,
         you should add Ruby to your toolbox.
       </p>},
-  image_url: 'ruby.jpg',
+  image_url: 'uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}/ruby.jpg',
   price: 49.50,
   in_stock: 5)
 # . . .
@@ -36,7 +36,7 @@ Product.create(title: 'Rails Test Prescriptions',
         procedures for Rails 2 and Rails 3, and introduces popular add-ons,
         including Cucumber, Shoulda, Machinist, Mocha, and Rcov.
       </p>},
-  image_url: 'rtp.jpg',
+  image_url: 'uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}/rtp.jpg',
   price: 43.75,
   in_stock: 3)
 

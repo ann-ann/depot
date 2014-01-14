@@ -52,7 +52,8 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         
-        @order.customers = @customer
+        @order.customer = @customer
+        @order.save
         format.html { redirect_to @order, notice: 
           'Thank you for your order.' }
         format.json { render json: @customer, status: :created,

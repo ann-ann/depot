@@ -72,9 +72,12 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy
-    redirect_to products_url ,notice: 'Product was deleted.' 
-    
+    if @product.destroy
+      redirect_to products_url ,notice: 'Product was deleted.' 
+    else
+      logger.error "Attempt to delete product that have references from order #{params[:id]}"
+      redirect_to products_url, notice: 'There are orders referenced to this item. It cannot be deleted.'
+    end
   end
 
   private

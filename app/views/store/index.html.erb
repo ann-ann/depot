@@ -1,10 +1,7 @@
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
+<%= render "shared/notice" %>
 
 <h1>Our products</h1>
 
-<% @products.each do |product| %>
-  <%= render product %>
-<% end %>
+<%= render(@products) || "There are no products available" %>
+
 
