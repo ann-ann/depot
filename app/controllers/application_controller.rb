@@ -4,14 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-# TODO fix.find order in DB
-    def current_order
-      Order.find(session[:order_id]) 
+# TODO fix.find order in DB by user
+  def current_order
+    Order.find(session[:order_id]) 
     rescue ActiveRecord::RecordNotFound
-      order = Order.create
-      session[:order_id] = order.id
-      order
-    end
+    order = Order.create
+    session[:order_id] = order.id
+    order
+  end
+  
+ def current_customer
+  @current_customer ||= session[:customer_id] &&
+  Customer.find_by(id: session[:customer_id])
+  end
 
-    
 end

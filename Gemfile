@@ -33,6 +33,8 @@ gem "rmagick"
 
 gem "carrierwave"
 
+gem 'bcrypt-ruby'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

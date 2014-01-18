@@ -3,6 +3,7 @@ class StoreController < ApplicationController
   	@products = Product.order(:title)
     @order = current_order
   	@date = format_date
+    @customer = current_customer
   end
 
   def format_date

@@ -5,11 +5,11 @@
  * appear at the top of the compiled file, but it's generally better
  * to create a new file per style scope.
  
-*= require jquery.ui.all
+ *= require jquery.ui.all
  *= require_self
  *= require_tree . 
-
 */
+
 #banner {
   background: #9c9;
   padding: 10px;

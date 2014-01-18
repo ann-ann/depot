@@ -59,7 +59,6 @@ class CustomersController < ApplicationController
         format.json { render json: @customer, status: :created,
           location: @customer }
       else
-        @order = current_order
         format.html { render action: "new" }
         format.json { render json: @customer.errors,
           status: :unprocessable_entity }
@@ -94,7 +93,8 @@ class CustomersController < ApplicationController
       format.json { head :ok }
     end
   end
+
    def customer_params
-      params.require(:customer).permit(:email, :first_name, :last_name, :password)
+      params.require(:customer).permit(:email, :first_name, :last_name, :password, :password_confirmation)
     end
 end
