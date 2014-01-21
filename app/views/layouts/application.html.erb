@@ -15,8 +15,7 @@
       <div id = "cart">
         <%= render @order %>
         <% unless @order.order_items.empty? %>
-        <!-- <%= button_to 'Checkout', @order, method: :get %> -->
-        <%= button_to 'Checkout', @customer? @order : new_customer_path , method: :get %>
+        <%= button_to 'Checkout', @current_customer? @order : new_customer_path , method: :get %>
         <%= button_to 'Empty cart', @order, method: :delete, data: { confirm: 'Are you sure' } %>
         <% end %>
       </div>
@@ -26,9 +25,12 @@
   	  	<li><a href=<%= order_path(@order) %>>Current order</a></li>
   	  	<li><a href="http://www...">Contact</a></li>
   	  </ul>
-      <p><%= @date %></p>
-  	</div>
+      <a><%= "Hi!, #{@current_customer.first_name.capitalize}" if @current_customer %></a></br>
+      <%= link_to 'logout', logout_path if @current_customer %>
+      <%= render 'sessions/form' if !@current_customer %>
+    </div>
   	<div id="main"> 
+    <%= render "shared/notice" %>
       <%= yield %>
   	</div>
   </div>

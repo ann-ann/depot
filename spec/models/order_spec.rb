@@ -34,7 +34,7 @@ describe Order do
     end
   end
   context ".set_status" do
-    it { expect(order.state).to be_eql('in_progress') }
+    it { expect(order.state).to be_eql('new') }
   end
 end
 

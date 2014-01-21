@@ -6,5 +6,6 @@ FactoryGirl.define do
     first_name Faker::Name.name
     last_name Faker::Name.name
     password "password"
+    password_confirmation "password"
   end
 end

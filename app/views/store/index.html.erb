@@ -1,14 +1,9 @@
-<%= render "shared/notice" %>
-
-<%= "Hi!, #{@customer.first_name.capitalize}" if @customer %>
-<%= link_to 'logout', logout_path if @customer %>
-
 <h1>Our products</h1>
+<%= @msg if @msg %>
 
 
 <%= render(@products) || "There are no products available" %>
 
-<%= render 'sessions/form' if !@customer %>
 
 
 

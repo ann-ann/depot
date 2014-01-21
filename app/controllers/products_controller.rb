@@ -1,11 +1,7 @@
 
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :find_order
 
-  def find_order
-    @order = current_order
-  end
   # GET /products
   # GET /products.json
   def index

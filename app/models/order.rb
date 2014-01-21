@@ -10,16 +10,23 @@ class Order < ActiveRecord::Base
   after_find :count_price
   before_create :set_status, :set_completed_at
 
+  scope :_new, -> {where("state = 'new'")}
+
   def count_price
     self.total_price = OrderItem.where(order_id: self.id).sum("price")
   end
 
   def set_status
-    self.state = 'in_progress'
+    self.state = 'new'
   end
 
   def set_completed_at
     self.completed_at = Date.today
+  end
+
+  def set_customer(customer)
+    self.customer_id = customer.id if customer
+    save
   end
 
   def add_product(product) 

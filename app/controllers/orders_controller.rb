@@ -43,13 +43,14 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-     @order = current_order
+  
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
