@@ -8,9 +8,14 @@ class Customer < ActiveRecord::Base
 
   validates :email, :first_name, :last_name, :password_digest, presence: :true
   validates :email, uniqueness: true, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }
+  validates_inclusion_of :role, in: %w(admin user)
 
   def name
     first_name + " " + last_name
+  end
+
+  def admin?
+    true if role.eql? "admin"
   end
 
   def rate(product)

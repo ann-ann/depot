@@ -53,7 +53,8 @@ ProductAuthor.create(product_id: 3, author_id: 4)
 
 Country.create(name: "Ukraine")
 
-Customer.create(first_name: "ann", last_name: "vs", email: "lalal@gmail.com", password: "123qwe")
+Customer.create(first_name: "ann", last_name: "vs", email: "ann@gmail.com", password: 1, password_confirmation: 1, role: "user")
+Customer.create(first_name: "ann", last_name: "admin", email: "admin@gmail.com", password: 1, password_confirmation: 1, role: "admin")
 
 Rating.create(customer_id: 1, product_id: 1, rating: 10, text: "Such an awesome book!")
 

@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  
+  skip_before_filter :authorize_admin, except: :index
   # GET /customers
   # GET /customers.json
   def index
@@ -49,6 +49,7 @@ class CustomersController < ApplicationController
   def create
 
     @customer = Customer.new(customer_params)
+    @customer.role = "user";
 
     respond_to do |format|
       if @customer.save

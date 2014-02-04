@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_filter :authorize_admin, except: :index
   before_action :set_order, only: [:show, :edit, :update, :destroy, :index]
 
   # GET /orders
