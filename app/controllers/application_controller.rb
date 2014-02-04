@@ -5,8 +5,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :current_customer, :current_order
   before_filter :authorize_admin
+  before_filter :authorize
 
   protected
+
+  def authorize
+    unless @current_customer
+      redirect_to store_path, notice: "Log in please"
+    end
+  end
+
   def authorize_admin
     unless @current_customer && @current_customer.admin?
       redirect_to store_path, notice: "Youre not allowed to be there. sorry :("

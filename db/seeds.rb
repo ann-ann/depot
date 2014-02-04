@@ -64,7 +64,7 @@ ProductType.create(product_id: 1, type_id: 1)
 ProductType.create(product_id: 2, type_id: 1)
 ProductType.create(product_id: 3, type_id: 2)
 
-Order.create(customer_id: 1)
+Order.create(customer_id: 1, state: "completed")
 
 OrderItem.create(product_id: 1, order_id: 1)
 OrderItem.create(product_id: 2, order_id: 1)

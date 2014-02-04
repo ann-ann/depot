@@ -19,6 +19,7 @@ Depot::Application.routes.draw do
   resources :sessions
 
   resources :addresses
+
     root to: "store#index", as: 'store' 
     get '/stories', to: redirect('/products')
 end

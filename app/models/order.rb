@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
   # accepts_nested_attributes_for :shipp_address, :bill_address
 
   scope :_new, -> {where("state = 'new'")}
-  scope :complited, -> {where("state = 'complited'")}
+  scope :completed, -> {where("state = 'completed'")}
 
   def count_price
     self.total_price = OrderItem.where(order_id: self.id).sum("price")
@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
    
   def complete_order
     self.completed_at = Date.today
-    self.state = "complited"
+    self.state = "completed"
     save
   end
 

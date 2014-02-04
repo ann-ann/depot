@@ -23,7 +23,7 @@
   	  	<li><a href=<%= store_path %>>Home</a></li>
   	  	<li><a href=<%= products_path %>>Products list</a></li>
   	  	<li><a href=<%= order_path(@order) %>>Current order</a></li>
-  	  	<li><a href="http://www...">Contact</a></li>
+  	  	<li><a href=<%= orders_path %>>Orders</a></li>
   	  </ul>
       <a><%= "Hi!, #{@current_customer.first_name.capitalize}" if @current_customer %></a></br>
       <%= link_to 'logout', logout_path if @current_customer %>

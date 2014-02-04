@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   skip_before_filter :authorize_admin, except: :index
+  skip_before_filter :authorize, only: [:new, :create]
   # GET /customers
   # GET /customers.json
   def index

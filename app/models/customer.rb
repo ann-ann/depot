@@ -18,6 +18,14 @@ class Customer < ActiveRecord::Base
     true if role.eql? "admin"
   end
 
+  def orders
+    if admin?
+      Order.all
+    else
+      Order.where("customer_id = #{self.id}")
+    end
+  end
+
   def rate(product)
   	products = []
     orders.each do |o|

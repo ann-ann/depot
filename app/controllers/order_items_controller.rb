@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
   skip_before_filter :authorize_admin
+  skip_before_filter :authorize
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
 
   # GET /order_items

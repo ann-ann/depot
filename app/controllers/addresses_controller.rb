@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  skip_before_filter :authorize_admin
   before_action :set_order
 
   def set_order
