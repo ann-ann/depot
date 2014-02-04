@@ -6,7 +6,9 @@ Depot::Application.routes.draw do
 
   resources :credit_cards
 
-  resources :customers
+  resources :customers do
+    # get "orders" => "orders#user_orders", :as => "orders"
+  end
 
   resources :order_items
 

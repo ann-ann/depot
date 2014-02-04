@@ -9,6 +9,11 @@ class OrdersController < ApplicationController
     @orders = @current_customer.orders.completed.paginate page: params[:page], order: 'created_at desc', per_page: 10
   end
   
+  # def user_orders()
+  #   @customer = Customer.find(params[:customer_id])
+  #   @orders = @customer.orders.completed.paginate page: params[:page], order: 'created_at desc', per_page: 10
+  # end
+
   # GET /orders/1
   # GET /orders/1.json
   def show
