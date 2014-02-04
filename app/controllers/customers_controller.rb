@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  
   # GET /customers
   # GET /customers.json
   def index
@@ -46,16 +47,18 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    @order = current_order
+
     @customer = Customer.new(customer_params)
 
     respond_to do |format|
       if @customer.save
-        
-        @order.customer = @customer
-        @order.save
-        format.html { redirect_to @order, notice: 
-          'Thank you for your order.' }
+
+        session[:customer_id] = @customer.id
+        # TODO fix duplication in sessions controller
+        @order = current_order
+        @order.set_customer(@customer)
+
+        format.html { redirect_to @order}
         format.json { render json: @customer, status: :created,
           location: @customer }
       else

@@ -4,13 +4,16 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, dependent: :destroy
   belongs_to :customer
-  has_one :shipp_address, class_name: "Address"
-  has_one :bill_address, class_name: "Address"
+  belongs_to :shipp_address, class_name: "Address"
+  belongs_to :bill_address, class_name: "Address"
 # TODO update after order_item added
   after_find :count_price
-  before_create :set_status, :set_completed_at
+  before_create :set_status
+
+  # accepts_nested_attributes_for :shipp_address, :bill_address
 
   scope :_new, -> {where("state = 'new'")}
+  scope :complited, -> {where("state = 'complited'")}
 
   def count_price
     self.total_price = OrderItem.where(order_id: self.id).sum("price")
@@ -19,9 +22,11 @@ class Order < ActiveRecord::Base
   def set_status
     self.state = 'new'
   end
-
-  def set_completed_at
+   
+  def complete_order
     self.completed_at = Date.today
+    self.state = "complited"
+    save
   end
 
   def set_customer(customer)
@@ -42,5 +47,12 @@ class Order < ActiveRecord::Base
 
     current_item
   end
+
+  def add_address(address)
+    self.bill_address = address
+    self.shipp_address = address
+    save
+  end
+
 end
 

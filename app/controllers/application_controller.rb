@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   private
 
   def current_order
+    # имеет ли смысл фильтровать по юзеру ? see below
+    # @order.in? @current_customer.orders
     @order = Order.find(session[:order_id]) 
     rescue ActiveRecord::RecordNotFound
     @order = Order.create

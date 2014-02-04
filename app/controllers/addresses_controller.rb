@@ -4,6 +4,7 @@ class AddressesController < ApplicationController
   def set_order
     @order = current_order
   end
+
   def show
   end
 
@@ -19,13 +20,19 @@ class AddressesController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    @order = current_order
-    @address = @order.add_address(address_type)
+    @address = Address.new(address_params)
 
     respond_to do |format|
       if @address.save
-        format.html { redirect_to order_url }
+        @order = current_order
+        @order.add_address(@address)
+        @order.complete_order
+        OrderNotifier.received(@order).deliver
+
+        format.html { redirect_to store_url, notice: "Thank you for your order" }
         format.json { render json: @address, status: :created, location: @address }
+        
+        session[:order_id] = nil
       else
         format.html { render action: 'new' }
         format.json { render json: @address.errors, status: :unprocessable_entity }
@@ -47,7 +54,7 @@ class AddressesController < ApplicationController
   
   private
     # Never trust parameters from the scary internet, only allow the white list through.
-    def order_item_params
-      params.require(:order_item).permit(:product_id, :order_id, :price, :quantity)
+    def address_params
+      params.require(:address).permit(:city, :address, :phone, :zipcode)
     end
 end

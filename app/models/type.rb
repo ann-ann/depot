@@ -1,3 +1,6 @@
+# Has a title
+# Should have many books
+
 class Type < ActiveRecord::Base
 
   has_many :product_types
@@ -6,6 +9,6 @@ class Type < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def to_s
-  	"#{name}"
+  	name
   end
 end

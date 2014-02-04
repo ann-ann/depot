@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115130608) do
+ActiveRecord::Schema.define(version: 20140122082918) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20140115130608) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
-    t.integer  "order_id"
   end
 
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
@@ -85,7 +84,9 @@ ActiveRecord::Schema.define(version: 20140115130608) do
     t.integer  "bill_address_id"
   end
 
+  add_index "orders", ["bill_address_id"], name: "index_orders_on_bill_address_id"
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
+  add_index "orders", ["shipp_address_id"], name: "index_orders_on_shipp_address_id"
 
   create_table "product_authors", force: true do |t|
     t.integer  "product_id"

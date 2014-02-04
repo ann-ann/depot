@@ -1,23 +1,22 @@
+# Book
+# Should contain title, descirption, price and how many books in stock
+# Should belong to author and category
+# Should have many ratings from customers
+
 class Product < ActiveRecord::Base 
-
-  mount_uploader :image_url, ImageUploader
-  
-# Should belong to author
-  has_many :product_authors
-  has_many :authors, through: :product_authors
-# Should have many ratings from costomers
-  has_many :ratings
-# Should belong to category(type)
-  has_many :product_types
-  has_many :types, through: :product_types
-
-  has_many :order_items
 
   before_destroy :ensure_no_refs_by_any_order_item
 
-  has_many :order_items
+  mount_uploader :image_url, ImageUploader
   
-  # Should contain title, descirption, price and how many books in stock
+  has_many :product_authors
+  has_many :authors, through: :product_authors
+  has_many :ratings
+  has_many :product_types
+  has_many :types, through: :product_types
+  has_many :order_items
+  has_many :orders, through: :order_items 
+
   validates :title, :description, presence: true
   validates :price, numericality: {greater_than_or_equal_to: 0.01, message: 'Price have to be not less that 0.01'}
   validates :title, uniqueness: true, length: {minimum: 10, message: 'Title have to be not less that 10 chars long'}
@@ -28,7 +27,6 @@ class Product < ActiveRecord::Base
   validates_numericality_of :in_stock, greater_than_or_equal_to: 0
 
   scope :in_stock, -> {where("in_stock > 0")}
-
   scope :books, -> { joins(:types).where("types.name = 'book'" ) }
   
   def in_stock?
@@ -51,4 +49,3 @@ class Product < ActiveRecord::Base
   end
 
 end
-# As a customer I should be able to rate a book and add my comments. But only once and for book what I ordered.

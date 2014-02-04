@@ -1,6 +1,6 @@
 
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :who_bought]
 
   # GET /products
   # GET /products.json
@@ -73,6 +73,12 @@ class ProductsController < ApplicationController
     else
       logger.error "Attempt to delete product that have references from order #{params[:id]}"
       redirect_to products_url, notice: 'There are orders referenced to this item. It cannot be deleted.'
+    end
+  end
+
+  def who_bought
+    respond_to do |format|
+      format.atom
     end
   end
 
