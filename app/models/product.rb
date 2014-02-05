@@ -33,6 +33,10 @@ class Product < ActiveRecord::Base
     true if in_stock > 0
   end
 
+  def to_s
+    title
+  end
+
   def ensure_no_refs_by_any_order_item
     if order_items.empty?
       true

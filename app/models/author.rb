@@ -9,6 +9,17 @@ class Author < ActiveRecord::Base
     message: 'only jpg/png/gif image'
   }
 
+  before_destroy :ensure_no_refs_by_any_products
+
+  def ensure_no_refs_by_any_products
+    if products.empty?
+      true
+    else 
+      errors.add(:base, 'cannot be delated')
+      false
+    end
+  end
+
   def to_s
     "#{first_name} #{last_name}"
   end
