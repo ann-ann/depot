@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_admin
     unless @current_customer && @current_customer.admin?
-      redirect_to store_path, notice: "Youre not allowed to be there. sorry :("
+      redirect_to '/', notice: "Youre not allowed to be there. sorry :("
     end
   end
 

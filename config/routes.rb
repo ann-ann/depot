@@ -4,6 +4,7 @@ Depot::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "customers#new", :as => "signup"
+  # get "admin" 
 
   resources :credit_cards
 

@@ -24,6 +24,7 @@
         <% if @current_customer %>
           <li><a href=<%= orders_path %>>Orders</a></li>
           <% if @current_customer.admin? %>
+            <li><a href=<%= 'admin' %>>Administration</a></li>
   	  	    <li><a href=<%= products_path %>>Products list</a></li>
   	  	    <li><a href=<%= customers_path %>>Customers</a></li>
             <li><a href=<%= types_path %>>Types</a></li>

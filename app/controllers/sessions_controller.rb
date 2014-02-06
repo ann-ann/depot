@@ -9,11 +9,15 @@ class SessionsController < ApplicationController
     if customer && customer.authenticate(params[:password])
       session[:customer_id] = customer.id
       flash.now.alert = "Logged in! #{session[:customer_id]}"
+      if customer.admin?
+        redirect_to '/admin'
+      else
          # TODO fix duplication in sessions controller
         @order = current_order
         @order.set_customer(customer)
 
-      redirect_to store_url, :notice => "Logged in!"
+        redirect_to store_url, :notice => "Logged in!"
+      end
     else
       redirect_to store_url, :notice => "Invalid email or password"
     end
