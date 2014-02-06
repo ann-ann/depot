@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140204111604) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: true do |t|
     t.string   "address"
     t.string   "zipcode"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140204111604) do
     t.integer  "country_id"
   end
 
-  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
+  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
 
   create_table "authors", force: true do |t|
     t.string   "first_name"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140204111604) do
     t.datetime "updated_at"
   end
 
-  add_index "credit_cards", ["order_id"], name: "index_credit_cards_on_order_id"
+  add_index "credit_cards", ["order_id"], name: "index_credit_cards_on_order_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "email"
@@ -75,9 +78,9 @@ ActiveRecord::Schema.define(version: 20140204111604) do
   end
 
   create_table "orders", force: true do |t|
-    t.decimal  "total_price",                  precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_price",      precision: 8, scale: 2, default: 0.0
     t.string   "state"
-    t.datetime "completed_at",     limit: 255
+    t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"
@@ -85,9 +88,9 @@ ActiveRecord::Schema.define(version: 20140204111604) do
     t.integer  "bill_address_id"
   end
 
-  add_index "orders", ["bill_address_id"], name: "index_orders_on_bill_address_id"
-  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
-  add_index "orders", ["shipp_address_id"], name: "index_orders_on_shipp_address_id"
+  add_index "orders", ["bill_address_id"], name: "index_orders_on_bill_address_id", using: :btree
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+  add_index "orders", ["shipp_address_id"], name: "index_orders_on_shipp_address_id", using: :btree
 
   create_table "product_authors", force: true do |t|
     t.integer  "product_id"
@@ -96,8 +99,8 @@ ActiveRecord::Schema.define(version: 20140204111604) do
     t.datetime "updated_at"
   end
 
-  add_index "product_authors", ["author_id"], name: "index_product_authors_on_author_id"
-  add_index "product_authors", ["product_id"], name: "index_product_authors_on_product_id"
+  add_index "product_authors", ["author_id"], name: "index_product_authors_on_author_id", using: :btree
+  add_index "product_authors", ["product_id"], name: "index_product_authors_on_product_id", using: :btree
 
   create_table "product_types", force: true do |t|
     t.integer  "product_id"
@@ -106,8 +109,8 @@ ActiveRecord::Schema.define(version: 20140204111604) do
     t.datetime "updated_at"
   end
 
-  add_index "product_types", ["product_id"], name: "index_product_types_on_product_id"
-  add_index "product_types", ["type_id"], name: "index_product_types_on_type_id"
+  add_index "product_types", ["product_id"], name: "index_product_types_on_product_id", using: :btree
+  add_index "product_types", ["type_id"], name: "index_product_types_on_type_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "title"
@@ -128,8 +131,8 @@ ActiveRecord::Schema.define(version: 20140204111604) do
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["customer_id"], name: "index_ratings_on_customer_id"
-  add_index "ratings", ["product_id"], name: "index_ratings_on_product_id"
+  add_index "ratings", ["customer_id"], name: "index_ratings_on_customer_id", using: :btree
+  add_index "ratings", ["product_id"], name: "index_ratings_on_product_id", using: :btree
 
   create_table "types", force: true do |t|
     t.string   "name"

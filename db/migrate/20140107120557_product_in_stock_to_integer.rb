@@ -1,5 +1,7 @@
 class ProductInStockToInteger < ActiveRecord::Migration
   def change
-  	change_column :products, :in_stock, :integer
+  	connection.execute(%q{
+  alter table products alter column in_stock type integer using cast(in_stock as integer);
+})
   end
 end
