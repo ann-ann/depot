@@ -14,3 +14,11 @@ test:
   pool: 5
   username: postgres
   password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: depot_production
+  pool: 5
+  username: postgres
+  password:
