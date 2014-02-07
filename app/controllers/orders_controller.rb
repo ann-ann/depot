@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  skip_before_filter :authorize_admin
-  skip_before_filter :authorize
+  
+  skip_before_filter :authorize, only: [:create, :destroy]
   before_action :set_order, only: [:show, :edit, :update, :destroy, :index]
 
   # GET /orders
@@ -32,25 +32,6 @@ class OrdersController < ApplicationController
         format.json { render json: @order }
       end
     end
-  end
-
-  # GET /orders/new
-  # def new
-  #   @order = current_order
-  #   if @order.order_items.empty?
-  #     redirect_to store_url, notice: "Your cart is empty"
-  #     return
-  #   end 
-  #   respond_to do |format|
-  #     format.html # new.html.erb
-  #     format.json { render json: @order }
-  #   end
-
-  # end
-
-  # GET /orders/1/edit
-  def edit
-  
   end
 
   # POST /orders

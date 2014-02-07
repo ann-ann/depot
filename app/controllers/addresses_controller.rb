@@ -1,12 +1,8 @@
 class AddressesController < ApplicationController
-  skip_before_filter :authorize_admin
   before_action :set_order
 
   def set_order
     @order = current_order
-  end
-
-  def show
   end
 
   # GET /order_items/new
@@ -40,17 +36,6 @@ class AddressesController < ApplicationController
       end
     end
 
-  end
-
-
-  # DELETE /order_items/1
-  # DELETE /order_items/1.json
-  def destroy
-    @address.destroy
-    respond_to do |format|
-      format.html { redirect_to store_url}
-      format.json { head :no_content }
-    end
   end
   
   private

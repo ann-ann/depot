@@ -1,16 +1,6 @@
 class CustomersController < ApplicationController
-  skip_before_filter :authorize_admin, except: :index
-  skip_before_filter :authorize, only: [:new, :create]
-  # GET /customers
-  # GET /customers.json
-  def index
-    @customers = Customer.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @customers }
-    end
-  end
+  skip_before_filter :authorize, only: [:new, :create]
 
   # GET /customers/1
   # GET /customers/1.json

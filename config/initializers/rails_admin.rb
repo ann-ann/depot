@@ -22,7 +22,9 @@ RailsAdmin.config do |config|
   }
 
   config.authorize_with do
-    authorize_admin
+    unless @current_customer.admin?
+      redirect_to main_app.store_path , notice: "Youre not allowed to be there. sorry :("
+    end
   end
 
   config.actions do
