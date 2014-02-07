@@ -13,6 +13,5 @@ describe Address do
 
   context "belongs to country and order" do
     it { expect(address).to belong_to(:country)}
-    it { expect(address).to belong_to(:order)}
   end
 end

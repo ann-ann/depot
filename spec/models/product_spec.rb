@@ -21,12 +21,7 @@ describe Product do
       expect(product).to allow_value('ann.jpg, valid_img.png, valig.gif, smthg.JPG, http://a.b.c/lalal.png').
       for(:image_url) 
     end
-
-    it do 
-      expect(product).not_to allow_value('ann.doc, invalid_img, valig.txt, smthg.p_n_g, http://a.b.c/lalal_png').
-      for(:image_url) 
-    end
-
+    
     it { expect(product).to allow_value('').for(:image_url) } 
 
     it do 

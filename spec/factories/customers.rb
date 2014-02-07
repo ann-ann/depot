@@ -7,5 +7,6 @@ FactoryGirl.define do
     last_name Faker::Name.name
     password "password"
     password_confirmation "password"
+    role "user"
   end
 end

@@ -12,8 +12,8 @@ describe Order do
   context "assosiations" do
     it { expect(order).to have_many(:order_items).dependent(:destroy) }
     it { expect(order).to belong_to(:customer) }
-    it { expect(order).to have_one(:shipp_address).class_name('Address') }
-    it { expect(order).to have_one(:bill_address).class_name('Address') }
+    it { expect(order).to belong_to(:shipp_address).class_name('Address') }
+    it { expect(order).to belong_to(:bill_address).class_name('Address') }
   end
 
   context ".count_price" do

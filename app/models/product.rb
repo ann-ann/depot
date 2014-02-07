@@ -20,10 +20,6 @@ class Product < ActiveRecord::Base
   validates :title, :description, presence: true
   validates :price, numericality: {greater_than_or_equal_to: 0.01, message: 'Price have to be not less that 0.01'}
   validates :title, uniqueness: true, length: {minimum: 10, message: 'Title have to be not less that 10 chars long'}
-  validates :image_url, allow_blank: true, format: {
-    with: %r{\.(gif|jpg|png)}i,
-    message: 'URL have to leads to link of jpg/png/gif image'
-  }
   validates_numericality_of :in_stock, greater_than_or_equal_to: 0
 
   scope :in_stock, -> {where("in_stock > 0")}

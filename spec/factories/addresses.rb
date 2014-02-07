@@ -6,7 +6,6 @@ FactoryGirl.define do
     zipcode Faker::Address.zip_code
     city Faker::Address.city
     phone Faker::PhoneNumber.phone_number
-    order nil
     country nil
   end
 end

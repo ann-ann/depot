@@ -26,6 +26,10 @@ class Customer < ActiveRecord::Base
     end
   end
 
+  def set_user_role
+    self.role = 'user'
+  end
+
   def rate(product)
   	products = []
     orders.each do |o|

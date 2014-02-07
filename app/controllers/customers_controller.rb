@@ -50,7 +50,7 @@ class CustomersController < ApplicationController
   def create
 
     @customer = Customer.new(customer_params)
-    @customer.role = "user";
+    @customer.set_user_role
 
     respond_to do |format|
       if @customer.save
