@@ -16,13 +16,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   # GET /customers/new.json
   def new
-    @order = current_order
-    if @order.order_items.empty?
-      redirect_to store_url, notice: "Your cart is empty.customer"
-      return
-    end
-
-    @customer = Customer.new
+  @customer = Customer.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,19 +32,13 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-
     @customer = Customer.new(customer_params)
-    @customer.set_user_role
 
     respond_to do |format|
       if @customer.save
-
         session[:customer_id] = @customer.id
-        # TODO fix duplication in sessions controller
-        @order = current_order
-        @order.set_customer(@customer)
 
-        format.html { redirect_to @order}
+        format.html { redirect_to store_path }
         format.json { render json: @customer, status: :created,
           location: @customer }
       else

@@ -33,6 +33,6 @@ describe OrderItem do
   end
 
   context ".decrease_quantity" do
-    it { expect { order_item.decrease_quantity }.to change{product.in_stock}.by(1) }
+    it { expect { order_item.decrease_product_quantity }.to change{product.in_stock}.by(1) }
   end
 end

@@ -9,5 +9,4 @@
 <p>completed_at: <%= @order.completed_at %></p>
 
 <%= button_to "Proceed", new_address_path(@order.bill_address), method: :get %>
-<%= link_to 'Edit', edit_order_path(@order) %> 
 <%= link_to 'Back to store', store_path %>  

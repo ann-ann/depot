@@ -10,29 +10,29 @@ class Order < ActiveRecord::Base
   after_find :count_price
   before_create :set_status
 
-  # accepts_nested_attributes_for :shipp_address, :bill_address
-
   scope :_new, -> {where("state = 'new'")}
   scope :completed, -> {where("state = 'completed'")}
 
   def count_price
     self.total_price = OrderItem.where(order_id: self.id).sum("price")
+    save
   end
 
   def set_status
     self.state = 'new'
   end
-   
-  def complete_order
-    self.completed_at = Date.today
-    self.state = "completed"
-    save
-  end
 
   def set_customer(customer)
     self.customer_id = customer.id if customer
+  end
+   
+  def complete_order(customer)
+    self.completed_at = Date.today
+    self.state = "completed"
+    set_customer(customer)
     save
   end
+
 
   def add_product(product) 
     current_item = order_items.find_by_product_id(product.id)

@@ -1,9 +1,9 @@
 class AddressesController < ApplicationController
-  before_action :set_order
+  # before_action :set_order
 
-  def set_order
-    @order = current_order
-  end
+  # def set_order
+  #   @order = current_order
+  # end
 
   # GET /order_items/new
   def new
@@ -21,10 +21,10 @@ class AddressesController < ApplicationController
 
     respond_to do |format|
       if @address.save
-        @order = current_order
+        # @order = current_order
         @order.add_address(@address)
-        @order.complete_order
-        OrderNotifier.received(@order).deliver
+        @order.complete_order(@current_customer)
+        # OrderNotifier.received(@order).deliver
 
         format.html { redirect_to store_url, notice: "Thank you for your order" }
         format.json { render json: @address, status: :created, location: @address }

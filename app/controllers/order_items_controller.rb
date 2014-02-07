@@ -8,20 +8,6 @@ class OrderItemsController < ApplicationController
     @order_items = OrderItem.all
   end
 
-  # GET /order_items/1
-  # GET /order_items/1.json
-  # def show
-  # end
-
-  # GET /order_items/new
-  # def new
-  #   @order_item = OrderItem.new
-  # end
-
-  # GET /order_items/1/edit
-  # def edit
-  # end
-
   # POST /order_items
   # POST /order_items.json
   def create
@@ -40,20 +26,6 @@ class OrderItemsController < ApplicationController
 
   end
 
-  # PATCH/PUT /order_items/1
-  # PATCH/PUT /order_items/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @order_item.update(order_item_params)
-  #       format.html { redirect_to @order_item, notice: 'Order item was successfully updated.' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: 'edit' }
-  #       format.json { render json: @order_item.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
   # DELETE /order_items/1
   # DELETE /order_items/1.json
   def destroy
@@ -61,8 +33,8 @@ class OrderItemsController < ApplicationController
     if @order_item.quantity > 1
       @order_item.quantity -= 1
       @order_item.save
-      # TODO check if its fine??  
-      @order_item.decrease_quantity
+      
+      @order_item.decrease_product_quantity
     else
       @order_item.destroy
     end 

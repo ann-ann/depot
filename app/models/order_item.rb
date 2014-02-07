@@ -5,7 +5,7 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
 
   before_save :count_price
-  before_destroy :back_product_to_stock
+  after_destroy :back_product_to_stock
 
   def count_price
     self.price = (product.price * quantity).to_f
@@ -16,8 +16,26 @@ class OrderItem < ActiveRecord::Base
     product.save
   end
 
-  def decrease_quantity
+  def decrease_product_quantity
     product.in_stock += 1
     product.save
   end
+
+
+
+  # def check_it
+  #  if self.quantity > 1
+  #     self.quantity -= 1
+  #     self.save
+  #     # TODO check if its fine??  
+  #     self.decrease_product_quantity
+  #     false
+  #  else
+  #    self.back_product_to_stock
+  #    true
+  #  end
+  # end
+
 end
+
+  

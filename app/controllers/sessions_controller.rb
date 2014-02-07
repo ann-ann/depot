@@ -9,10 +9,6 @@ class SessionsController < ApplicationController
       if customer.admin?
         redirect_to '/admin'
       else
-         # TODO fix duplication in sessions controller
-        @order = current_order
-        @order.set_customer(customer)
-
         redirect_to store_url, :notice => "Logged in!"
       end
     else

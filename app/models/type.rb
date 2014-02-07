@@ -1,6 +1,3 @@
-# Has a title
-# Should have many books
-
 class Type < ActiveRecord::Base
 
   has_many :product_types

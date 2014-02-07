@@ -8,7 +8,9 @@ class Customer < ActiveRecord::Base
 
   validates :email, :first_name, :last_name, :password_digest, presence: :true
   validates :email, uniqueness: true, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }
-  validates_inclusion_of :role, in: %w(admin user)
+  validates_inclusion_of :role, in: %w(admin user), allow_nil: true
+  
+  before_create :set_user_role
 
   def name
     first_name + " " + last_name
@@ -16,14 +18,6 @@ class Customer < ActiveRecord::Base
 
   def admin?
     true if role.eql? "admin"
-  end
-
-  def orders
-    if admin?
-      Order.all
-    else
-      Order.where("customer_id = #{self.id}")
-    end
   end
 
   def set_user_role
