@@ -21,10 +21,8 @@ class AddressesController < ApplicationController
 
     respond_to do |format|
       if @address.save
-        # @order = current_order
         @order.add_address(@address)
         @order.complete_order(@current_customer)
-        # OrderNotifier.received(@order).deliver
 
         format.html { redirect_to store_url, notice: "Thank you for your order" }
         format.json { render json: @address, status: :created, location: @address }
