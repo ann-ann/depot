@@ -11,7 +11,6 @@ class OrderItemsController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    @order = current_order
     product = Product.find(params[:product_id])
     @order_item = @order.add_product(product)
     respond_to do |format|

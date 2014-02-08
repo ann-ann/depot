@@ -4,6 +4,7 @@ class StoreController < ApplicationController
 
   def index
   	@products = Product.order(:title)
+  	@types = Type.all
   end
 
 end

@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :shipp_address, class_name: "Address"
   belongs_to :bill_address, class_name: "Address"
+
 # TODO update after order_item added
   after_find :count_price
   before_create :set_status

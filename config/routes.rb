@@ -13,7 +13,10 @@ Depot::Application.routes.draw do
 
   resources :order_items
 
-  resources :orders
+  resources :orders 
+  
+  resources :addresses
+
 
   resources :products do
     get :who_bought, on: :member
@@ -21,7 +24,7 @@ Depot::Application.routes.draw do
 
   resources :sessions
 
-  resources :addresses
+
 
   root to: "store#index", as: 'store' 
   get '/stories', to: redirect('/products')

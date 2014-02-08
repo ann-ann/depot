@@ -30,7 +30,11 @@
   	  </ul>
       <a><%= "Hi!, #{@current_customer.first_name.capitalize}" if @current_customer %></a></br>
       <%= link_to 'logout', logout_path if @current_customer %>
-      <%= render 'sessions/form' if !@current_customer %>
+      <%= render 'sessions/form' if !@current_customer %></br>
+      <div id="types">
+        <b>Types:</b></br>
+        <%= render @types %>
+      </div>
     </div>
   	<div id="main"> 
     <%= render "shared/notice" %>
